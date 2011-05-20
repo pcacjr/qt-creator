@@ -32,6 +32,7 @@
 
 #include "glslindenter.h"
 
+#include <QtCore/QDebug>
 #include <cpptools/cppcodeformatter.h>
 #include <cpptools/cpptoolssettings.h>
 #include <cpptools/cppcodestylepreferences.h>
@@ -96,6 +97,9 @@ void GLSLIndenter::indent(QTextDocument *doc,
                           const QChar &typedChar,
                           const TextEditor::TabSettings &tabSettings)
 {
+    qDebug() << "GLSLIndenter::indent()";
+    qDebug() << "typed char = " << typedChar;
+
     if (cursor.hasSelection()) {
         QTextBlock block = doc->findBlock(cursor.selectionStart());
         const QTextBlock end = doc->findBlock(cursor.selectionEnd()).next();
