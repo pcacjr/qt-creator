@@ -300,3 +300,10 @@ plugin_macros.depends += plugin_coreplugin
 
 SUBDIRS += plugin_pythoneditor
 plugin_pythoneditor.subdir = pythoneditor
+
+SUBDIRS += plugin_pythonprojectmanager
+plugin_pythonprojectmanager.subdir = pythonprojectmanager
+plugin_pythonprojectmanager.depends = plugin_texteditor
+plugin_pythonprojectmanager.depends += plugin_projectexplorer
+plugin_pythonprojectmanager.depends += plugin_pythoneditor
+plugin_pythonprojectmanager.depends += plugin_cpptools
