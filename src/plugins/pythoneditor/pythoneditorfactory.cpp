@@ -32,7 +32,6 @@ using namespace PythonEditor::Constants;
 PyEditorFactory::PyEditorFactory(QObject *parent)
   : Core::IEditorFactory(parent)
 {
-    qDebug() << "PyEditorFactory::PyEditorFactory()";
     m_mimeTypes
         << QLatin1String(PythonEditor::Constants::PYTHON_SOURCE_MIMETYPE_0)
         << QLatin1String(PythonEditor::Constants::PYTHON_SOURCE_MIMETYPE_1)
@@ -68,7 +67,6 @@ Core::IFile *PyEditorFactory::open(const QString &fileName)
 
 Core::IEditor *PyEditorFactory::createEditor(QWidget *parent)
 {
-    qDebug() << "PyEditorFactory::createEditor()";
     PythonEditor::PyTextEditorWidget *rc =
                     new PythonEditor::PyTextEditorWidget(parent);
     PyEditorPlugin::instance()->initializeEditor(rc);

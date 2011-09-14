@@ -96,8 +96,6 @@ Core::Command *PyEditorPlugin::addToolAction(QAction *a,
 /* the fight starts here! :-( */
 bool PyEditorPlugin::initialize(const QStringList & /*arguments*/, QString *error_message)
 {
-    qDebug() << "PyEditorPlugin::initialize()";
-
     Core::ICore *core = Core::ICore::instance();
     if (!core->mimeDatabase()->addMimeTypes(
             QLatin1String(":/pythoneditor/PythonEditor.mimetypes.xml"),
@@ -160,7 +158,6 @@ bool PyEditorPlugin::initialize(const QStringList & /*arguments*/, QString *erro
     fragWizardParameters.setId(QLatin1String("PY"));
     addAutoReleasedObject(new PyFileWizard(fragWizardParameters, core));
 
-    qDebug() << "PyEditorPlugin::initialize() will return";
     return true;
 }
 
@@ -179,7 +176,6 @@ void PyEditorPlugin::initializeEditor(PythonEditor::PyTextEditorWidget *editor)
 {
     QTC_ASSERT(m_instance, /**/);
 
-    qDebug() << "PyEditorPlugin::initializeEditor()";
     m_actionHandler->setupActions(editor);
 
     TextEditor::TextEditorSettings::instance()->initializeEditor(editor);

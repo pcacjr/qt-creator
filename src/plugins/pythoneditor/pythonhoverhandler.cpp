@@ -45,8 +45,6 @@ bool PyHoverHandler::acceptEditor(IEditor *editor)
 
 void PyHoverHandler::identifyMatch(TextEditor::ITextEditor *editor, int pos)
 {
-    qDebug() << "PyHoverHandler::identifyMatch()";
-
     if (PyTextEditorWidget *glslEditor = qobject_cast<PyTextEditorWidget *>(editor->widget())) {
         if (! glslEditor->extraSelectionTooltip(pos).isEmpty()) {
             setToolTip(glslEditor->extraSelectionTooltip(pos));

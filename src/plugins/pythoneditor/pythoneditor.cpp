@@ -73,7 +73,6 @@ PyTextEditorWidget::PyTextEditorWidget(QWidget *parent)
     : TextEditor::PlainTextEditorWidget(parent),
     m_outlineCombo(0)
 {
-    qDebug() << "PyTextEditorWidget::PyTextEditorWidget";
     setParenthesesMatchingEnabled(true);
     setCodeFoldingSupported(true);
     setRevisionsVisible(true);
@@ -136,8 +135,6 @@ bool PyTextEditorWidget::isOutdated(void) const
 
 Core::IEditor *PyEditorEditable::duplicate(QWidget *parent)
 {
-    qDebug() << "PyEditorEditable::duplicate()";
-
     PyTextEditorWidget *newEditor = new PyTextEditorWidget(parent);
     newEditor->duplicateFrom(editorWidget());
     PyEditorPlugin::instance()->initializeEditor(newEditor);

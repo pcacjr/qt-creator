@@ -33,8 +33,6 @@ Indenter::~Indenter()
 
 bool Indenter::isElectricCharacter(const QChar &ch) const
 {
-    qDebug() << "Indenter::isElectricCharacter()";
-
     return ch == QLatin1Char(':');
 }
 
@@ -60,15 +58,12 @@ void Indenter::indentBlock(QTextDocument *doc,
     Q_UNUSED(doc)
     Q_UNUSED(typedChar)
 
-    qDebug() << "Indenter::indentBlock()";
-
     int tabSize = tabSettings.m_tabSize;
     if (tabSize > 4)
         tabSize = 4;    /* let's assume 4 for now */
 
     const QTextBlock pblock = block.previous();
     const QString line = pblock.text();
-    qDebug() << "line:" << line;
     const QChar c = QChar(line[line.size() - 1]);
     QRegExp wspacesOnly("^[\\s]*$");
     QRegExp elseKeyword("^[\\s]*else(.*:)$");
