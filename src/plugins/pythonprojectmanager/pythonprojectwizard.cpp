@@ -38,7 +38,7 @@
 #include <coreplugin/mimedatabase.h>
 #include <projectexplorer/projectexplorerconstants.h>
 #include <projectexplorer/customwizard/customwizard.h>
-#include <qtsupport/qtsupportconstants.h>
+#include <app/app_version.h>
 
 #include <utils/filewizardpage.h>
 

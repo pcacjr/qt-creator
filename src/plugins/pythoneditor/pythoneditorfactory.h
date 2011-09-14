@@ -36,7 +36,7 @@ public:
 
     virtual QStringList mimeTypes(void) const;
     /* IEditorFactory */
-    QString id(void) const;
+    Core::Id id(void) const;
     QString displayName(void) const;
     Core::IFile *open(const QString &fileName);
     Core::IEditor *createEditor(QWidget *parent);

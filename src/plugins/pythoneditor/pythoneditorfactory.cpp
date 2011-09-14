@@ -43,9 +43,9 @@ PyEditorFactory::~PyEditorFactory()
 {
 }
 
-QString PyEditorFactory::id(void) const
+Core::Id PyEditorFactory::id(void) const
 {
-    return QLatin1String(PYTHONEDITOR_ID);
+    return Core::Id(PYTHONEDITOR_ID);
 }
 
 QString PyEditorFactory::displayName(void) const

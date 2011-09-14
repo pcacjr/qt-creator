@@ -55,17 +55,14 @@ static size_t wspaces_count(const QString &line)
 void Indenter::indentBlock(QTextDocument *doc,
                            const QTextBlock &block,
                            const QChar &typedChar,
-                           TextEditor::BaseTextEditorWidget *editor)
+                           const TextEditor::TabSettings &tabSettings)
 {
     Q_UNUSED(doc)
-    Q_UNUSED(editor)
     Q_UNUSED(typedChar)
 
     qDebug() << "Indenter::indentBlock()";
 
-    const TextEditor::TabSettings &ts = editor->tabSettings();
-
-    int tabSize = ts.m_tabSize;
+    int tabSize = tabSettings.m_tabSize;
     if (tabSize > 4)
         tabSize = 4;    /* let's assume 4 for now */
 
@@ -91,9 +88,9 @@ void Indenter::indentBlock(QTextDocument *doc,
             QString s("else");
             s.append(elseKeyword.cap(1));
             pblock.text() = s;
-            ts.indentLine(pblock, tsize);
+            tabSettings.indentLine(pblock, tsize);
             tsize = wspaces_count(line);
-            ts.indentLine(block, tsize);
+            tabSettings.indentLine(block, tsize);
             m_tabSize = tsize;
         } else if (elifKeyword.exactMatch(line) &&
                     m_tabSize == wspaces_count(line)) {
@@ -102,9 +99,9 @@ void Indenter::indentBlock(QTextDocument *doc,
             QString s("elif");
             s.append(elifKeyword.cap(1));
             pblock.text() = s;
-            ts.indentLine(pblock, tsize);
+            tabSettings.indentLine(pblock, tsize);
             tsize = wspaces_count(line);
-            ts.indentLine(block, tsize);
+            tabSettings.indentLine(block, tsize);
             m_tabSize = tsize;
         } else if (exceptKeyword.exactMatch(line) &&
                     m_tabSize == wspaces_count(line)) {
@@ -113,19 +110,19 @@ void Indenter::indentBlock(QTextDocument *doc,
             QString s("except");
             s.append(exceptKeyword.cap(1));
             pblock.text() = s;
-            ts.indentLine(pblock, tsize);
+            tabSettings.indentLine(pblock, tsize);
             tsize = wspaces_count(line);
-            ts.indentLine(block, tsize);
+            tabSettings.indentLine(block, tsize);
             m_tabSize = tsize;
         } else {
             m_tabSize = wspaces_count(line) + tabSize;
-            ts.indentLine(block, m_tabSize);
+            tabSettings.indentLine(block, m_tabSize);
         }
     } else if (wspacesOnly.exactMatch(line)) {
         m_tabSize  = m_tabSize > 0 ? m_tabSize - tabSize : m_tabSize;
-        ts.indentLine(block, m_tabSize);
+        tabSettings.indentLine(block, m_tabSize);
     } else {
         m_tabSize = wspaces_count(line);
-        ts.indentLine(block, m_tabSize);
+        tabSettings.indentLine(block, m_tabSize);
     }
 }

@@ -30,8 +30,8 @@
 **
 **************************************************************************/
 
-#ifndef GENERICPROJECTMANAGER_H
-#define GENERICPROJECTMANAGER_H
+#ifndef PYTHONPROJECTMANAGER_H
+#define PYTHONPROJECTMANAGER_H
 
 #include <projectexplorer/iprojectmanager.h>
 
@@ -48,7 +48,8 @@ public:
     Manager();
 
     virtual QString mimeType() const;
-    virtual ProjectExplorer::Project *openProject(const QString &fileName);
+    virtual ProjectExplorer::Project *openProject(const QString &fileName,
+                                                    QString *errorString);
 
     void notifyChanged(const QString &fileName);
 
@@ -62,4 +63,4 @@ private:
 } // namespace Internal
 } // namespace PythonProjectManager
 
-#endif // GENERICPROJECTMANAGER_H
+#endif // PYTHONPROJECTMANAGER_H

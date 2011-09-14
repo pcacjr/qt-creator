@@ -52,8 +52,11 @@ QString Manager::mimeType() const
     return QLatin1String(Constants::GENERICMIMETYPE);
 }
 
-ProjectExplorer::Project *Manager::openProject(const QString &fileName)
+ProjectExplorer::Project *Manager::openProject(const QString &fileName,
+                                                QString *errorString)
 {
+    Q_UNUSED(errorString)
+
     if (!QFileInfo(fileName).isFile())
         return 0;
 
